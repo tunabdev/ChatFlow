@@ -23,6 +23,9 @@
   .signUpButton {
     @apply w-full p-3 text-sm uppercase text-white bg-primary disabled:text-disabledTextGray disabled:bg-disabledBgGray disabled:cursor-not-allowed
   }
+  .signInButton {
+    @apply w-full px-6 text-sm text-black bg-transparent border border-primary font-medium  disabled:text-disabledTextGray disabled:bg-disabledBgGray disabled:cursor-not-allowed
+  }
 
   input:focus+div>div {
     width: 100%;

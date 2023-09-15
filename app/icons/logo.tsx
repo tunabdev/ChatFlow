@@ -1,13 +1,5 @@
 import React from "react";
-
-type IconProps = {
-  height?: number;
-  width?: number;
-  fill?: number;
-  stroke?: number;
-  strokeWidth?: number;
-  className?: string;
-};
+import { IconProps } from "@/lib/utils";
 
 function Icon({ height = 24, width = 24 }: IconProps): JSX.Element {
   return (

@@ -74,28 +74,36 @@ export const authOptions: NextAuthOptions = {
           where: { email: credentials.email },
         });
         if (!user || !user?.hashedPassword) {
-          throw new Error("Invalid credentials");
+          throw new Error("User not found");
         }
         const isCorrectPassword = await bcrypt.compare(
           credentials.password,
           user.hashedPassword
         );
         if (!isCorrectPassword) {
-          throw new Error("Invalid credentials");
+          throw new Error("Passwords are not equal");
         }
         return user;
       },
     }),
   ],
-  theme: {
-    colorScheme: "light",
-  },
+  // theme: {
+  //   colorScheme: "light",
+  // },
   debug: process.env.NODE_ENV === "development",
   session: {
     strategy: "jwt",
   },
+  pages: {
+    signIn: "/login",
+  },
   secret: process.env.NEXTAUTH_SECRET,
-
+  // callbacks: {
+  //   async signIn({ user }): Promise<boolean> {
+  //     console.log("signIn", user);
+  //     return true;
+  //   },
+  // },
   // callbacks: {
   //   async jwt({ token }) {
   //     token.userRole = "admin";
@@ -105,6 +113,6 @@ export const authOptions: NextAuthOptions = {
 };
 
 const handler = NextAuth(authOptions);
-export {handler as GET, handler as POST};
+export { handler as GET, handler as POST };
 
 // export default NextAuth(authOptions);
